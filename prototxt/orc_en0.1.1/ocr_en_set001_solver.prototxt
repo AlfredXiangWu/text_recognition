@@ -1,0 +1,20 @@
+net: "ocr_en_set001_train_test.prototxt"
+
+test_iter: 641
+test_interval: 1000
+test_compute_loss: true
+
+base_lr: 0.01
+momentum: 0.9
+weight_decay: 0.0005
+lr_policy: "fixed"
+
+
+display: 100
+max_iter: 100000
+snapshot: 50000
+snapshot_prefix: "ocr_en_set001"
+
+solver_mode: GPU
+
+debug_info: false

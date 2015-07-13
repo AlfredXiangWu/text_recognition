@@ -2,7 +2,7 @@ clear all;
 clc;
 
 path = '../word_train';
-error_log = fopen('../output/error_log.txt', 'w+');
+error_log = fopen('../output/train_error_log.txt', 'w+');
 word_list = dir(path);
 word_num = length(word_list);
 
@@ -11,9 +11,9 @@ letter_flag = 0;
 param.pixel = 2;
 
 % each word
-for i = 4:word_num
-    word_path = sprintf('%s/%s', path, word_list(i).name);
-    word = word_list(i).name;
+for nword = 4:word_num
+    word_path = sprintf('%s/%s', path, word_list(nword).name);
+    word = word_list(nword).name;
     param.nletter = length(word);
     img_list = dir(word_path);
     
@@ -37,14 +37,14 @@ for i = 4:word_num
         img = imread(img_path);
         [m, n] = size(img);
         tmp = ones(1, n);
-        for i = 1: m
-            tmp = tmp & img(i, :);
+        for j = 1: m
+            tmp = tmp & img(j, :);
         end
         idx = find(tmp==0);
         if letter_flag
             letter = letter_seg(img, idx, param);
         else
-             save_path = sprintf('%s/%s', output_path, img_name);
+             save_path = sprintf('%s/%d.jpg', output_path, i-2);
              y_start = max(1, idx(1) - param.pixel);
              y_end = min(n, idx(end) + param.pixel);
              save_img = img(:, y_start:y_end)*255;
