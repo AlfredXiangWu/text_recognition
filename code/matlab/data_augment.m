@@ -13,12 +13,5 @@ function output = data_augment(img)
             
             count = count + 1;
         end
-        
-        
-    %% Gaussian filter
-        sigma = 20;
-        gausFilter = fspecial('gaussian',  [3 3], sigma);
-        temp = imfilter(img, gausFilter, 'same');
-
 
 end
