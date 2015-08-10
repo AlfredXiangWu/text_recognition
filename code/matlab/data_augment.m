@@ -10,7 +10,7 @@ function output = data_augment(img)
             temp(n+1:h+n, n+1:w+n) = img;
             temp = imrotate(temp, angle(i), 'bicubic');
             output{count} = temp(1.5*n:end-1.5*n, 1.5*n:end-1.5*n);
-            
+            figure, imshow(output{count})
             count = count + 1;
         end
 

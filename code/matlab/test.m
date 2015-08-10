@@ -3,7 +3,7 @@ clc;
 
 
 
-fox = imread('../data/20150728212540_001_fin_002_017.jpg')<128;
+fox = imread('../../data/20150728212540_001_fin_002_018.jpg')<128;
 
 % Build model & skeletonize text
 [fox_m, fox_rp]= autoPsm(fox);
