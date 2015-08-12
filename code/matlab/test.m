@@ -35,7 +35,6 @@ param(1).bottom = 5;
 param(1).left = -3;
 param(1).right = 3;
 
-
 % 2
 param(2).top = -5;
 param(2).bottom = 5;
@@ -54,9 +53,23 @@ param(4).bottom = -4;
 param(4).left = -4;
 param(4).right = 4;
 
+% 5
+param(4).top = -4;
+param(4).bottom = 4;
+param(4).left = 5;
+param(4).right = -5;
+
 %% process
-img_path = '../../data/20150728212540_001_fin_002_017.jpg';
+path = '../../data';
+% img_path= '../../data/fox.png';
 save_path = '../../results';
 
-res = data_augment(img_path, save_path, param);
-
+subdir = dir(path);
+for i  =1:length(subdir)
+    if subdir(i).isdir
+        continue;
+    end
+    
+    img_path = sprintf('%s/%s', path, subdir(i).name);
+    res = data_augment(img_path, save_path, param);
+end

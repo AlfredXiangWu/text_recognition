@@ -1,7 +1,14 @@
 function res = data_augment(img_path, save_path, param)
-    input = imread(img_path) > 128;
+    input = imread(img_path);
+    if size(input, 3) == 3
+        input = rgb2gray(input);
+    end
+    if ~isa(input,'logical')
+        input = input > 128;
+    end
+    
     [h, w] = size(input);
-    n = 15;
+    n = 20;
     temp = ones(h+2*n, w+2*n);
     temp(n+1:h+n, n+1:w+n) = input;
     img = im2bw(temp);
@@ -28,10 +35,29 @@ function res = data_augment(img_path, save_path, param)
             tmp = regexp(img_path, '/', 'split');
             img_name = regexp(tmp{end}, '\.*', 'split');
             img_save_path = sprintf('%s/%s_%03d.png', save_path, img_name{1}, count);
+            res{count} = output{j};
             count = count + 1;
-            imwrite(output{j}, img_save_path);
+            
+%             imwrite(output{j}, img_save_path);
         end
-    end     
+    end  
+   
+    % debug 
+    img_save_path = sprintf('%s/%s.gif', save_path, img_name{1});
+    for i = 1:length(res)
+        imshow(res{i});
+        frame = getframe(gcf);
+        im=frame2im(frame);
+        [I,map]=rgb2ind(im,256);
+        k=i-0;
+        if k==1;
+            imwrite(I,map, img_save_path,'gif','Loopcount',inf,...
+                'DelayTime',0.1);
+        else
+            imwrite(I,map,img_save_path,'gif','WriteMode','append',...
+                'DelayTime',0.1);
+        end
+    end
     
     res = 1;
 end
@@ -41,7 +67,7 @@ function output = im_rotate(img)
     count = 1;
 %% image rotate
     angle = [-15, -10, -5, 5, 10, 15];
-    n = 20;
+    n = 25;
     img = im2double(img);
     [h, w] = size(img);
     for i = 1:length(angle)
