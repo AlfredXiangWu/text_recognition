@@ -2,8 +2,11 @@ function [psm,rp] = autoPsm(bimg,varargin)
 
 % Automatically generates an ink-blob PSM for the input image.
 
-%p = struct('skt',12,'spacing',4,'variance','proportional','sep',1);
-p = struct('skt',12,'spacing',4,'variance',0.5,'sep',1);
+% p = struct('skt',12,'spacing',4,'variance','proportional','sep',1);
+% p = struct('skt',12,'spacing',4,'variance',0.5,'sep',1);
+
+p = struct('skel',20,'spacing',4,'variance',0.5,'sep',1);
+
 p = setupParameters(p,varargin{:});
 
 % Check edge pixels to see if we need to invert
