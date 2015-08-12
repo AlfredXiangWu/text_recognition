@@ -1,5 +1,7 @@
 clear all;
 clc;
+
+img_path = '../../data/20150728212540_001_fin_002_018.jpg';
 % original = rgb2gray(imread('./PSM/fox.png'))<128;
 % [h, w] = size(original);
 % n = 15;
@@ -28,7 +30,7 @@ clc;
 % end
 
 
-%% configuration
+%% transform
 % 1
 param(1).top = -5;
 param(1).bottom = 5;
@@ -54,9 +56,7 @@ param(4).bottom = -4;
 param(4).left = -4;
 param(4).right = 4;
 
-%% process
-img_path = '../../data/20150728212540_001_fin_002_017.jpg';
-save_path = '../../results';
+save_path = ''
 
 res = data_augment(img_path, save_path, param);
 

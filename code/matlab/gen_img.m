@@ -15,8 +15,11 @@ function output = gen_img(img, x, y, x_trans, y_trans, r)
         output(ystart:yend, xstart:xend) = temp;
     end
 
-    se = strel('square', 2);
+    se = strel('square', r);
     bw = imdilate(output, se);
-%     bw = imerode(bw, se);
-    output = imerode(bw, se);
+%     se = strel('square', r);
+    bw = imerode(bw, se);
+    bw = imerode(bw, se);
+%     bw = imdilate(bw, se);
+    output = bw;
 end
