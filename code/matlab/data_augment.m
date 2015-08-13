@@ -66,7 +66,8 @@ end
 function output = im_rotate(img)
     count = 1;
 %% image rotate
-    angle = [-15, -10, -5, 5, 10, 15];
+%     angle = [-15, -10, -5, 5, 10, 15];
+    angle = -15:3:15
     n = 25;
     img = im2double(img);
     [h, w] = size(img);
@@ -74,7 +75,7 @@ function output = im_rotate(img)
         temp = ones(h+2*n, w+2*n);
         temp(n+1:h+n, n+1:w+n) = img;
         temp = imrotate(temp, angle(i), 'bicubic');
-        output{count} = temp(2*n:end-2*n, 2*n:end-2*n);
+        output{count} = temp(1.8*n:end-1.8*n, 1.8*n:end-1.8*n);
         count = count + 1;
     end
     output{count} = img;

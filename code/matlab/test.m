@@ -54,10 +54,10 @@ param(4).left = -4;
 param(4).right = 4;
 
 % 5
-param(4).top = -4;
-param(4).bottom = 4;
-param(4).left = 5;
-param(4).right = -5;
+param(4).top = 0;
+param(4).bottom = -3;
+param(4).left = 0;
+param(4).right = -3;
 
 %% process
 path = '../../data';
